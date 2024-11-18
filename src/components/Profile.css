@@ -1,0 +1,141 @@
+/* Profile Page */
+.profile-page {
+    margin: auto;
+    margin-top: 7vh;
+    border: 1px solid rgba(200, 180, 160, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    color: #4B2E24;
+    background: rgba(232, 212, 178, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.profile-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.profile-left {
+    margin-left: 10%;
+    margin-bottom: 7vh;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* Profile Picture */
+.picture {
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.change-pfp-btn,
+.add-book-btn,
+.add-staff-btn,
+.mod-staff-btn,
+.mod-info-btn,
+.print-report-btn,
+.mod-user-btn {
+    width: 260px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.mod-info-btn,
+.print-report-btn {
+    width: 530px;
+    margin-top: 10px;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-bottom: 3vh;
+}
+
+.change-pfp-btn {
+    background-color: #0D47A1; /* Dark blue */
+}
+
+.change-pfp-btn:hover {
+    background-color: #01579B; /* Even darker blue */
+}
+
+.add-book-btn {
+    background-color: #1976D2; /* Vibrant blue */
+}
+
+.add-book-btn:hover {
+    background-color: #1565C0; /* Darker vibrant blue */
+}
+
+.add-staff-btn {
+    background-color: #0288D1; /* Strong blue */
+}
+
+.add-staff-btn:hover {
+    background-color: #0277BD; /* Slightly darker blue */
+}
+
+.mod-staff-btn {
+    width: 530px;
+    background-color: #2196F3; /* Bright blue */
+    margin-top: 10px;
+}
+
+.mod-staff-btn:hover {
+    background-color: #1976D2; /* Darker bright blue */
+}
+
+.mod-user-btn {
+    width: 530px;
+    background-color: #1E88E5; /* Strong blue */
+    margin-top: 10px;
+}
+
+.mod-user-btn:hover {
+    background-color: #1565C0; /* Darker strong blue */
+}
+
+.mod-info-btn {
+    background-color: #42A5F5; /* Soft blue */
+}
+
+.mod-info-btn:hover {
+    background-color: #1E88E5; /* Darker soft blue */
+}
+
+.print-report-btn {
+    background-color: #0D47A1; /* Very dark blue */
+}
+
+.print-report-btn:hover {
+    background-color: #01579B; /* Darker deep blue */
+}

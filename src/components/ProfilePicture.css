@@ -1,0 +1,12 @@
+/* src/components/ProfilePicture.css */
+
+.profile-container {
+    position: relative; /* Positioning context for dropdown */
+}
+  
+  .profile-img {
+    margin-top: 10px;
+    width: 50px; /* Set the width for profile picture */
+    height: 50px; /* Set the height for profile picture */
+    border-radius: 50%; /* Make the picture circular */
+  }

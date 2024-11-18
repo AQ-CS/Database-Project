@@ -1,0 +1,67 @@
+.reg-staff-container {
+  margin: 20px auto;
+  margin-top: 10vh;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Container width */
+}
+
+h2 {
+  color: #5C4033; /* Dark brown for header */
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: #5C4033; /* Dark brown for labels */
+}
+
+input, select {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #5C4033; /* Dark brown border */
+  border-radius: 5px;
+  width: calc(100% - 20px); /* Adjusted width to account for padding */
+  box-sizing: border-box; /* Include padding and border in total width */
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #FFC107; /* Golden yellow */
+  color: #5C4033; /* Dark brown for button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Make the button stretch to the full width */
+}
+
+.submit-button:hover {
+  background-color: #FF8C42; /* Burnt orange on hover */
+}
+
+.required {
+  color: red; /* Red color for required fields */
+  margin-left: 5px;
+}
+
+.password-container {
+  position: relative; /* Position relative for the toggle icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 30px; /* Adjust this value based on your input's padding */
+  top: 54%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  cursor: pointer; /* Pointer cursor for clickable icon */
+  color: #5C4033; /* Dark brown color for the icon */
+}

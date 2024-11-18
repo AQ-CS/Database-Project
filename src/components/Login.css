@@ -1,0 +1,65 @@
+/* src/components/Login.css */
+.login-page {
+    display: flex;
+    justify-content: center; /* Center the login form */
+    align-items: center; /* Center vertically */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+  }
+  
+  .login-container {
+    margin: 20px auto;
+    margin-top: 20vh;
+    padding: 20px;
+    padding-bottom: 50px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Container width */
+  }
+  
+  h2 {
+    color: #5C4033; /* Dark brown for header */
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #5C4033; /* Dark brown for labels */
+  }
+  
+  input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #5C4033; /* Dark brown border */
+    border-radius: 5px;
+    width: calc(100% - 20px); /* Adjusted width to account for padding */
+    box-sizing: border-box; /* Include padding and border in total width */
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #FFC107; /* Golden yellow */
+    color: #5C4033; /* Dark brown for button text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make the button stretch to the full width */
+  }
+  
+  .submit-button:hover {
+    background-color: #FF8C42; /* Burnt orange on hover */
+  }
+  
+  .error-message {
+    color: red; /* Change color as needed */
+    margin-top: 10px; /* Space between the fields and error message */
+  }
+  

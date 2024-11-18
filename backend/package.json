@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "ngrok": "ngrok http 5000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "json2csv": "^6.0.0-alpha.2",
+    "mysql": "^2.18.1",
+    "ngrok": "^5.0.0-beta.2",
+    "papaparse": "^5.4.1"
+  }
+}

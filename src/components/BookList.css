@@ -1,0 +1,72 @@
+/* src/components/BookList.css */
+.book-list {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .book-item, .no-books-found, .search {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid rgba(200, 180, 160, 0.7); /* Soft tan border */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #4B2E24; /* Dark brown text */
+    background: rgba(232, 212, 178, 0.8); /* Muted beige background for a softer look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  }
+  
+  .quantity-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .borrow-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #FFCA3A; /* Bright yellow-gold */
+    color: #4B2E24; /* Dark brown text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .borrow-button:hover {
+    background-color: #FF914D; /* Warm orange on hover */
+  }
+  
+  .book-image {
+    max-width: 200px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .book-info {
+    text-align: left;
+    flex-grow: 1;
+  }
+  
+  .book-info h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: #4B2E24; /* Dark brown */
+  }
+  
+  .book-info p {
+    margin: 5px 0;
+    color: #4B2E24; /* Dark brown */
+  }
+  
+  .no-books-found, .search{
+      position: sticky;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 30px;
+      font-weight: bold;
+  }   
