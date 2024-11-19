@@ -16,7 +16,7 @@ CREATE TABLE books (
     copies_available INT DEFAULT 0, 
     publisher VARCHAR(255), 
     image LONGBLOB 
-);
+); ```
 
 ### 2. **Staff table**
 ```sql
