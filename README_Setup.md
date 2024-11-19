@@ -102,6 +102,7 @@ The password is (Test1) but hashed.
 
 ### In the server.js you will see the MySQL configuration, change the info below as needed for you schema
 
+```javascript
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
@@ -109,3 +110,4 @@ const db = mysql.createPool({
   database: "library",
   connectionLimit: 10, // Adjust limit as needed
 });
+```
