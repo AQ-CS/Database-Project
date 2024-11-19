@@ -192,6 +192,7 @@ app.put('/api/books/:id', (req, res) => {
 // DELETE /api/books/:id (Delete a book)
 app.delete("/api/books/:id", (req, res) => {
   const bookId = req.params.id;
+  console.log(`Received request to delete book with ID: ${bookId}`);
 
   // Step 1: Check if there are any active (unreturned) transactions for the book
   const checkTransactionQuery = `
@@ -199,14 +200,19 @@ app.delete("/api/books/:id", (req, res) => {
     WHERE book_id = ? AND return_date IS NULL
   `;
 
+  console.log(`Executing query to check active transactions: ${checkTransactionQuery}`);
+
   db.query(checkTransactionQuery, [bookId], (error, results) => {
     if (error) {
       console.error("Error checking transactions:", error);
       return res.status(500).json({ status: "error", message: "Internal server error" });
     }
 
+    console.log(`Check transactions result:`, results);
+
     // If there are active transactions, prevent deletion and return a specific message
     if (results.length > 0) {
+      console.log("Active transactions found, deletion not allowed.");
       return res.json({ status: "active_transaction", message: "Book has not been returned" });
     }
 
@@ -217,28 +223,42 @@ app.delete("/api/books/:id", (req, res) => {
       FROM transactions
       WHERE book_id = ?
     `;
+
+    console.log(`Executing query to move transactions to deleted_record: ${moveToDeletedRecordQuery}`);
     
     db.query(moveToDeletedRecordQuery, [bookId], (error, results) => {
       if (error) {
+        console.error("Error moving transactions to deleted_record:", error);
         return res.status(500).json({ status: "error", message: "Internal server error" });
       }
 
+      console.log(`Move transactions result:`, results);
+
       // Step 3: Delete all transactions associated with this book
       const deleteTransactionsQuery = "DELETE FROM transactions WHERE book_id = ?";
+      console.log(`Executing query to delete transactions: ${deleteTransactionsQuery}`);
+      
       db.query(deleteTransactionsQuery, [bookId], (error, results) => {
         if (error) {
+          console.error("Error deleting transactions:", error);
           return res.status(500).json({ status: "error", message: "Internal server error" });
         }
 
+        console.log(`Delete transactions result:`, results);
+
         // Step 4: Delete the book from the Books table
         const deleteBookQuery = "DELETE FROM Books WHERE id = ?";
+        console.log(`Executing query to delete book: ${deleteBookQuery}`);
+        
         db.query(deleteBookQuery, [bookId], (error, results) => {
           if (error) {
+            console.error("Error deleting book:", error);
             return res.status(500).json({ status: "error", message: "Internal server error" });
           }
 
           // If the book is not found
           if (results.affectedRows === 0) {
+            console.log("Book not found in the database.");
             return res.status(404).json({ status: "not_found", message: "Book not found" });
           }
 
@@ -852,8 +872,6 @@ app.put('/api/transactions/:id', (req, res) => {
     res.send(csv);
   });
 });
-
-
 
 
 // API FOR ALL USERS ===========================================================================================================
