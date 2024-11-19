@@ -16,7 +16,8 @@ CREATE TABLE books (
     copies_available INT DEFAULT 0, 
     publisher VARCHAR(255), 
     image LONGBLOB 
-); ```
+); 
+```
 
 ### 2. **Staff table**
 ```sql
@@ -29,7 +30,8 @@ CREATE TABLE staff (
     password VARCHAR(255) NOT NULL, 
     contact_info TEXT, 
     profile_picture LONGBLOB 
-); ```
+); 
+```
 
 ### 3. **Members table**
 ```sql
@@ -45,7 +47,8 @@ CREATE TABLE members (
     membership_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     password VARCHAR(255) NOT NULL, 
     profile_picture LONGBLOB 
-); ```
+); 
+```
  
 ### 4. **Transactions table**
 
@@ -61,7 +64,8 @@ CREATE TABLE transactions (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
     FOREIGN KEY (member_id) REFERENCES Members(id), 
     FOREIGN KEY (book_id) REFERENCES Books(id) 
-); ```
+); 
+```
 
 ### 5. **Deleted_record table: (Made to handle user and book deletion)**
 ```sql
@@ -75,14 +79,16 @@ CREATE TABLE deleted_record (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
   max_borrow DATETIME DEFAULT NULL 
-); ```
+); 
+```
 
 
 
 ### You need to create a base case for the staff table as the owner, in my case:
 ```sql
 INSERT INTO staff (id, fname, lname, role, email, password, contact_info, profile_picture) 
-VALUES ('OWN0001', 'Fname', 'lname', 'owner', 'yourEmail@gmail.com', '$2b$10$FnImwYOiYYwdBAtQ8iP6BOkAFgS7RCgG0oo5BtbIoCW0blxRE705C', '0512345678', NULL);```
+VALUES ('OWN0001', 'Fname', 'lname', 'owner', 'yourEmail@gmail.com', '$2b$10$FnImwYOiYYwdBAtQ8iP6BOkAFgS7RCgG0oo5BtbIoCW0blxRE705C', '0512345678', NULL);
+```
 
 
 The password is (Test1) but hashed.
