@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# Library Management System Database Schema
+This document provides an overview of the database schema for a library management system. The system is designed to manage books, members, staff, transactions, and deleted records efficiently.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tables Overview
 
-## Available Scripts
+### 1. **Books Table**
 
-In the project directory, you can run:
+```sql
+CREATE TABLE books ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    title VARCHAR(255) NOT NULL, 
+    author VARCHAR(255) NOT NULL, 
+    genre VARCHAR(100), 
+    description TEXT, 
+    published_year YEAR, 
+    copies_available INT DEFAULT 0, 
+    publisher VARCHAR(255), 
+    image LONGBLOB 
+); 
+```
 
-### `npm start`
+### 2. **Staff table**
+```sql
+CREATE TABLE staff ( 
+    id VARCHAR(20) NOT NULL PRIMARY KEY, 
+    fname VARCHAR(50) NOT NULL, 
+    lname VARCHAR(50) NOT NULL, 
+    role VARCHAR(50) NOT NULL, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL, 
+    contact_info TEXT, 
+    profile_picture LONGBLOB 
+); 
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 3. **Members table**
+```sql
+CREATE TABLE members ( 
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    street VARCHAR(255) NOT NULL, 
+    city VARCHAR(255) NOT NULL, 
+    postalCode VARCHAR(20) NOT NULL, 
+    fname VARCHAR(50) NOT NULL, 
+    lname VARCHAR(50) NOT NULL, 
+    phone VARCHAR(15) NOT NULL, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    membership_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    password VARCHAR(255) NOT NULL, 
+    profile_picture LONGBLOB 
+); 
+```
+ 
+### 4. **Transactions table**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sql
+CREATE TABLE transactions ( 
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    member_id INT NOT NULL, 
+    book_id INT NOT NULL, 
+    borrow_date DATETIME DEFAULT CURRENT_TIMESTAMP, 
+    return_date DATETIME, 
+    status ENUM('Borrowed', 'Returned') NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+    FOREIGN KEY (member_id) REFERENCES Members(id), 
+    FOREIGN KEY (book_id) REFERENCES Books(id) 
+); 
+```
 
-### `npm test`
+### 5. **Deleted_record table: (Made to handle user and book deletion)**
+```sql
+CREATE TABLE deleted_record ( 
+  id INT AUTO_INCREMENT PRIMARY KEY, 
+  member_id INT NOT NULL, 
+  book_id INT NOT NULL, 
+  borrow_date DATETIME DEFAULT CURRENT_TIMESTAMP, 
+  return_date DATETIME DEFAULT NULL, 
+  status ENUM('Borrowed', 'Returned') NOT NULL, 
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+  max_borrow DATETIME DEFAULT NULL 
+); 
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### You need to create a base case for the staff table as the owner, in my case:
+```sql
+INSERT INTO staff (id, fname, lname, role, email, password, contact_info, profile_picture) 
+VALUES ('OWN0001', 'Fname', 'lname', 'owner', 'yourEmail@gmail.com', '$2b$10$FnImwYOiYYwdBAtQ8iP6BOkAFgS7RCgG0oo5BtbIoCW0blxRE705C', '0512345678', NULL);
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The password is (Test1) but hashed.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Run the database using MySQL by opening the terminal, cd into backend, and "npm start"
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Open another terminal and without cd, "npm start" to start the react app
 
-## Learn More
+### In the server.js you will see the MySQL configuration, change the info below as needed for you schema
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```javascript
+const db = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "@DBPPass@",
+  database: "library",
+  connectionLimit: 10, // Adjust limit as needed
+});
+```
