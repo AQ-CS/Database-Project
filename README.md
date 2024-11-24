@@ -96,9 +96,9 @@ The password is (Test1) but hashed.
 
 
 
-### Run the database using MySQL by opening the terminal, cd into backend, and "npm start"
+### Run the database using MySQL by opening the terminal, cd into backend, "npm install", and "npm start"
 
-### Open another terminal and without cd, "npm start" to start the react app
+### Open another terminal and without cd, "npm install", and "npm start" to start the react app
 
 ### In the server.js you will see the MySQL configuration, change the info below as needed for you schema
 
